@@ -1,12 +1,33 @@
-sudo: required
+# sudo: required
 
-language: generic
+# language: generic
 
-services:
-  - docker
+# services:
+#   - docker
 
-before_install:
-  - docker build -t padmaja/docker-react -f Dockerfile.dev .
+# before_install:
+#   - docker build -t padmaja/docker-react -f Dockerfile.dev .
 
-script:
-  - docker run -e CI=true padmaja/docker-react npm run test
+# script:
+#   - docker run -e CI=true padmaja/docker-react npm run test
+
+version: 2.1
+
+jobs:
+  build:
+    docker:
+
+    steps:
+      - run : docker build -t padmaja/docker-react -f Dockerfile.dev .
+     
+  test:
+    docker:
+
+    steps:
+      - run :  docker run -e CI=true padmaja/docker-react npm run test
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
