@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - run : 
-          command: docker build -t padmaja/docker-react -f Dockerfile.dev .
+          command: docker build  c83dfbb029ae -f Dockerfile.dev .
      
   test:
     docker:
@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - run :  
-          command: docker run -e CI=true padmaja/docker-react npm run test
+          command: docker run -e CI=true c83dfbb029ae npm run test
 
 workflows:
   build_and_test:
