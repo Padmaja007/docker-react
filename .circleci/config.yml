@@ -16,19 +16,19 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:16
+      - image: circleci/node:10
 
     steps:
       - run : 
-          command: docker build  c83dfbb029ae -f Dockerfile.dev .
+          command: docker build c83dfbb029ae -f Dockerfile.dev .
      
   test:
     docker:
-      - image: circleci/node:16
+      - image: circleci/node:10
 
     steps:
       - run :  
-          command: docker run -e CI=true c83dfbb029ae npm run test
+          command: docker run c83dfbb029ae npm run test
 
 workflows:
   build_and_test:
